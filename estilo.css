@@ -33,27 +33,68 @@ body {
     background-color: #A7E9AF;
     width: 117px;
     height: 146px;
-    padding:24px 7px 22px 10px;
     bottom: 1px solid #99CEA8;
     border-radius: 5px;
     margin-bottom: 34px;
     margin-right: 34px;
     cursor: pointer;
+    position: relative;
+    transition: all 800ms linear;
 }
 
 .carta img {
     width: 100px;
-    height: 100px;
+    height: 100px; 
+    position: absolute;
+    top: 24px;
+    left: 11px;
+    transition: all 800ms linear;
 }
 
 .carta img:nth-child(2) {
-    display: none;
+   opacity: 0; 
 }
 
 .selecionado img:first-child {
-    display: none;
+    opacity: 0;   
 }
 
 .selecionado img:nth-child(2) {
-    display: initial;
+    opacity: 1;
+}
+.selecionado {
+    transform: rotateY(180deg);   
+}
+
+.caixa {
+    height: 40px;
+    width: 60px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 40px;
+    top: 100px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #75B79E;
+    border-radius: 10px;
+    color: black;
+    font-size: 10px;
+}
+.contador {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+@media(max-width: 614px) {
+    .inicio {
+        font-size: 36px;
+    }
+
+    .caixa {
+        right: 30px;
+    }
 }

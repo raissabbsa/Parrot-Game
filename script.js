@@ -1,29 +1,36 @@
 
 let qtdCartas;
-let organizaCartas = [];
-let defineImagens = [];
+let cont;
+let cartaImpar;
+let acertou;
+let tempo;
+let segundos;
 
 function comparador() { 
 	return Math.random() - 0.5; 
 }
 
 function IniciarJogo() {
+    let contador = 0;
+    let organizaCartas = [];
+    let defineImagens = [];
 
-    let cont = 0;
+    cont = 0;
+    acertou = 0;
+    segundos = 0;
 
-    while (cont == 0) {
+    const cartoes = document.querySelector('.cartoes');
+    cartoes.innerHTML ="";
+
+    while (contador == 0) {
         qtd = prompt("Com quantas cartas você quer jogar?");
 
         if(qtd % 2 == 0 && qtd >= 4 && qtd <= 14) {
-            cont = 1;
+            contador = 1;
         }
     }
     
     qtdCartas = qtd;
-
-    console.log(qtdCartas);
-
-    const cartoes = document.querySelector('.cartoes');
 
     for(i=0 ; i < qtdCartas/2 ; i++) {
         for(let j = 0 ; j<2; j++)
@@ -47,11 +54,60 @@ function IniciarJogo() {
         </div>`;
 
     }
+
+    tempo = setInterval(contadorTempo, 1000);
 }
 
 IniciarJogo();
 
 function viraCarta(cartaVirada) {
+
     cartaVirada.classList.add('selecionado');
+    cont++;
+
+    if(cont%2==0){
+        if(cartaImpar.className != cartaVirada.className) {
+            setTimeout(remove, 1000, cartaVirada);
+           
+        }
+        else {
+            acertou++;
+            if(acertou === qtdCartas/2) {
+            setTimeout(finaliza, 500);
+            }
+        }
+    }
+    else {
+        cartaImpar=cartaVirada;
+    }   
 }
 
+function remove(cartaVirada) {
+
+    cartaImpar.classList.remove('selecionado');
+    cartaVirada.classList.remove('selecionado');
+}
+
+function finaliza() {
+
+    clearInterval(tempo);
+
+    let textoFinal = `Você ganhou em ${cont} jogadas e em ${segundos} segundos!`;
+
+    alert(textoFinal);
+
+    let resposta = prompt('Gostaria de reiniciar a partida?');
+
+    if(resposta == "sim") {
+        IniciarJogo();
+    }
+}
+
+function contadorTempo() {
+
+    segundos++;
+
+    contaTempo = document.querySelector('.contador');
+
+    contaTempo.innerHTML=segundos;
+}
