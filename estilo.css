@@ -18,14 +18,15 @@ body {
     color: #75B79E;
     margin-top: 40px;
     margin-bottom: 50px;
+    text-align: center;
 }
 
 .cartoes {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    width: 930px;
-    background-color: aqua;
+    justify-content: center;
+    width: 70%;
+    margin-left: 70px;
 }
 
 .carta {
@@ -36,10 +37,23 @@ body {
     bottom: 1px solid #99CEA8;
     border-radius: 5px;
     margin-bottom: 34px;
-
+    margin-right: 34px;
+    cursor: pointer;
 }
 
 .carta img {
     width: 100px;
     height: 100px;
+}
+
+.carta img:nth-child(2) {
+    display: none;
+}
+
+.selecionado img:first-child {
+    display: none;
+}
+
+.selecionado img:nth-child(2) {
+    display: initial;
 }
